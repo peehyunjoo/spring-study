@@ -14,4 +14,3 @@ public class SampleController5 {
 		return vo;
 	}
 }
-// 
