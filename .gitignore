@@ -43,3 +43,6 @@ atlassian-ide-plugin.xml
 .recommenders
 RemoteSystemsTempFiles
 Servers
+bootstrap
+dist
+plugins

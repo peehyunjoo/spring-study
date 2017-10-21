@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -12,7 +12,6 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 	<property name="url" value="jdbc:mysql://hwi.mismaven.kr:3306/zzu"></property> -->
@@ -22,19 +21,4 @@
 	<property name="password" value=""></property>
 	
 </bean>
-
-<!-- pom.xml에 설정되어있는 라이브러리를 가지고와서 설정하는것 (mybatis) -->
-<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="dataSource" ref="dataSource"/>
-	<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
-	<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
-</bean>	
-
-<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
-</bean>
-
-<context:component-scan base-package="com.zzu.persistence"></context:component-scan>
 </beans>
-
-
