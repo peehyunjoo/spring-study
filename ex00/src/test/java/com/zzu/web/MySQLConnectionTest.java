@@ -8,11 +8,11 @@ import org.junit.Test;
 public class MySQLConnectionTest {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	
-	private static final String URL = "jdbc:mysql://hwi.mismaven.kr:3306/zzu";
+	private static final String URL = "jdbc:mysql://hwi.mismaven.kr:3306/";
 	
-	private static final String USER = "zzu";
+	private static final String USER = "";
 	
-	private static final String PW = "zzu1220@";
+	private static final String PW = "";
 	
 	@Test
 	public void testConnection() throws Exception{
