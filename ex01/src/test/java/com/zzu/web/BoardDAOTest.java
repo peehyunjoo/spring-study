@@ -17,6 +17,14 @@ public class BoardDAOTest{
 	@Inject
 	private BoardDAO dao;
 	
+	@Test
+	public void testCreate() throws Exception{
+		BoardVO board = new BoardVO();
+		board.setTitle("히얍2");
+		board.setContent("내용2");
+		board.setWriter("글쓰자2");
+		dao.create(board);
+	}
 	@Test 
 	public void testRead() throws Exception{
 		dao.read(1);	
@@ -25,7 +33,7 @@ public class BoardDAOTest{
 	@Test
 	public void testUpdate() throws Exception{
 		BoardVO board = new BoardVO();
-		board.setBno(1);
+		board.setBno(2);
 		board.setTitle("updated title");
 		board.setContent("updated content");
 		dao.update(board);
