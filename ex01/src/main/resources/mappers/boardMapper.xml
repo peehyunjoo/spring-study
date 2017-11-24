@@ -39,4 +39,36 @@
 		DELETE FROM tbl_board
 		WHERE bno = #{bno}
 	</delete>
+	
+	<select id ="listPage" resultType="com.zzu.domain.BoardVO">
+		<![CDATA[
+			SELECT 
+				bno,
+				title,
+				content,
+				writer,
+				regdate,
+				viewcnt
+			FROM tbl_board
+			WHERE bno > 0
+			ORDER BY bno DESC, regdate DESC
+			LIMIT #{page},10
+			]]>
+	</select>
+	
+	<select id="listCriteria" resultType="boardVO">
+		<![CDATA[
+			SELECT
+				bno,
+				title,
+				content,
+				writer,
+				regdate,
+				viewcnt
+			FROM tbl_board
+			WHERE bno > 0
+			ORDER BY bno DESC, regdate DESC
+			LIMIT #{pageStart},#{perPageNum}
+		]]>	
+	</select>
 </mapper> 
