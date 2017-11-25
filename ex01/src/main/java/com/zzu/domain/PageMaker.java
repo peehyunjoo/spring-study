@@ -1,5 +1,10 @@
 package com.zzu.domain;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.queryParam;
+
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 	private int totalCount;
 	private int startPage;
@@ -85,5 +90,13 @@ public class PageMaker {
 		this.cri = cri;
 	}
 	
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page",page)
+				.queryParam("perPageNum",cri.getPerPageNum())
+				.build();
+		
+		return uriComponents.toUriString();
+	}
 	
 }

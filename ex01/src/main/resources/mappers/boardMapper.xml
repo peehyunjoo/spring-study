@@ -56,7 +56,7 @@
 			]]>
 	</select>
 	
-	<select id="listCriteria" resultType="boardVO">
+	<select id="listCriteria" resultType="BoardVO">
 		<![CDATA[
 			SELECT
 				bno,
@@ -70,5 +70,15 @@
 			ORDER BY bno DESC, regdate DESC
 			LIMIT #{pageStart},#{perPageNum}
 		]]>	
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+			select count(bno)
+				from tbl_board
+			where 
+				bno > 0
+				
+		]]>
 	</select>
 </mapper> 
