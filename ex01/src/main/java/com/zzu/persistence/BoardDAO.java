@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zzu.domain.BoardVO;
 import com.zzu.domain.Criteria;
+import com.zzu.domain.SearchCriteria;
 
 public interface BoardDAO {
 	public List<BoardVO> listAll() throws Exception;
@@ -15,6 +16,9 @@ public interface BoardDAO {
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	
 	public int countPaging(Criteria cri)throws Exception;
+	
+	public List<BoardVO> listSearch(SearchCriteria cri)throws Exception;
+	public int listSearchCount(SearchCriteria cri) throws Exception;
  }
 
 
