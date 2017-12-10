@@ -1,13 +1,18 @@
-package com.zzu.persistene;
+package com.zzu.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
+import com.zzu.domain.Criteria;
 import com.zzu.domain.ReplyVO;
 
+@Repository
 public class ReplyDAOImpl implements ReplyDAO{
 
 	@Inject
@@ -39,4 +44,19 @@ public class ReplyDAOImpl implements ReplyDAO{
 		session.delete(namespace + ".delete",rno);
 	}
 
+	@Override
+	public List<ReplyVO> listPage(Integer bno, Criteria cri)throws Exception{
+		Map<String,Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("bno", bno);
+		paramMap.put("cri", cri);
+		
+		return session.selectList(namespace + ".listPage",paramMap);
+		
+	}
+	
+	@Override
+	public int count(Integer bno)throws Exception{
+		return session.selectOne(namespace + ".count", bno); 
+	}
 }

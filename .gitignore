@@ -47,4 +47,3 @@ bootstrap
 dist
 plugins
 **/MySQLConnectionTest.java
-**/root-context.xml

@@ -1,4 +1,4 @@
-package service;
+package com.zzu.service;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.zzu.domain.Criteria;
 import com.zzu.domain.ReplyVO;
-import com.zzu.persistene.ReplyDAO;
+import com.zzu.persistence.ReplyDAO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
@@ -37,6 +38,16 @@ public class ReplyServiceImpl implements ReplyService {
 	public void removeReply(Integer rno) throws Exception {
 		// TODO Auto-generated method stub
 		dao.delete(rno);
+	}
+	
+	@Override
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri)throws Exception{
+		return dao.listPage(bno, cri);
+	}
+	
+	@Override
+	public int count(Integer bno) throws Exception{
+		return dao.count(bno);
 	}
 
 }
