@@ -110,4 +110,27 @@ public class UploadController {
 		
 		return entity;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "deleteFile", method = RequestMethod.POST)
+	public ResponseEntity<String> deleteFile(String fileName){
+		logger.info("delete file:" + fileName);
+		
+		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+		
+		MediaType mType = MediaUtil.getMediaType(formatName);
+		
+		if(mType != null) {
+			String front = fileName.substring(0,12);
+			String end = fileName.substring(14);
+			
+			//front+end : 썸네일뺸 주소 , 즉 s_뺸 원본 이미지 
+			//원본삭제
+			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+		}
+		
+		//일반 파일 or 썸네일
+		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+		return new ResponseEntity<String>("deleted",HttpStatus.OK);
+	}
 }
