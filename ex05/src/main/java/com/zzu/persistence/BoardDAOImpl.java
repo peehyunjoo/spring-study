@@ -81,6 +81,12 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".listSearchCount",cri);
 	}
+
+	@Override
+	public void addAttach(String fullName) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace + ".addAttach",fullName);
+	}
 	
 		
 }
