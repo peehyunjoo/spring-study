@@ -24,7 +24,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleInputeEmail1">Writer</label>
-			<input type="text" name="writer" class="form-control">
+			<input type="text" name="writer" class="form-control" value="${ login.uid }" readonly>
 		</div>
 	</div>
 	<!--  file upload -->

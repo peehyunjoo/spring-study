@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+
 <script src="/resources/js/upload.js"></script>
 <style type="text/css">
 	.popup { position:absolute;}
@@ -202,7 +203,9 @@
 		<h3 class="timeline-header"><strong>{{rno}}</strong>-{{replyer}}</h3>
 		<div class="timeline-body">{{replytext}}</div>
 		<div class="timeline-footer">
+			{{ #eqReplyer replyer }}
 			<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modifyModal">Modify</a>
+			{{ /eqReplyer }}
 		</div>
 	</div>
 </li>
@@ -218,6 +221,14 @@ Handlebars.registerHelper("prettifyDate",function(timeValue){
 	return year+"/"+month+"/"+date;
 });
 
+Handlebars.registerHelper("eqReplyer", function(replyer, block){
+	var accum = "";
+	if(replyer == '${login.uid}'){
+		accum += block.fn();
+	}
+	
+	return accum;
+})
 var printDate = function (replyArr, target, templateObject){
 	var template = Handlebars.compile(templateObject.html());
 	
@@ -294,10 +305,11 @@ var printPaging = function(pageMaker,target){
 			<div class = "box-header">
 				<h3 class="box-title">ADD NEW REPLY</h3>
 			</div>
+			<c:if test="${ not empty login }">
 			<div class="box-body">
 				<label for="exampleInputEmail1">Writer</label>
 				<input class="form-control" type="text" placeholder="USER ID"
-				id="newReplyWriter">
+				id="newReplyWriter" value="${ login.uid }" readonly required />
 				<label for="exampleInptEmail1">ReplyText</label>
 				<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
 			</div>
@@ -305,6 +317,12 @@ var printPaging = function(pageMaker,target){
 			<div class="box-footer">
 				<button type="submit" class="btn" id="replyAddBtn">ADD REPLY</button>
 			</div>
+			</c:if>
+			<c:if test="${ empty login }">
+				<div class="box-body">
+					<div><a href="javascript:goLogin();">Login Pleases</a></div>
+				</div>
+			</c:if>
 		</div>
 		
 		<ul class="timeline">
