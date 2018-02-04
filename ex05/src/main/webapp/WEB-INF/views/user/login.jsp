@@ -14,7 +14,7 @@
 	
 	<div class="row">
 		<div class="col-xs-8">
-			<div class="checkbox icheck">
+			<div class="icheck">
 				<label for ="">
 					<input type="checkbox" name="useCookie"/> Remember Me
 				</label>
